@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Nagarro.Training.MVC.BookReadingEvent.Models.EventViewModel>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Events Invited To</title>
+</head>
+<body>
+    <table class="table">
+        <tr>
+            <th>
+                <p>Event Title</p>
+            </th>
+            <th>
+                <p>Event Type</p>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Title, "Details", new { id = item.EventID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                @if (item.Date >= DateTime.Now.Date)
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.EventID })
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

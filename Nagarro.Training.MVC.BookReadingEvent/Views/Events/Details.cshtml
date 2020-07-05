@@ -1,0 +1,131 @@
+﻿@model Nagarro.Training.MVC.BookReadingEvent.Models.EventDetailsWrapperClass
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eventViewModel.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventViewModel.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eventViewModel.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventViewModel.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eventViewModel.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventViewModel.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eventViewModel.Starttime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventViewModel.Starttime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eventViewModel.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventViewModel.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eventViewModel.Durationinhours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventViewModel.Durationinhours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eventViewModel.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventViewModel.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eventViewModel.OtherDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventViewModel.OtherDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eventViewModel.EventInvites)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventViewModel.EventInvites)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eventViewModel.PeopleInvited)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eventViewModel.PeopleInvited)
+        </dd>
+
+    </dl>
+</div>
+<hr />
+
+@using (Html.BeginForm("UpdateComment", "Events", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.TextArea("Comment")
+                @Html.Hidden("EventID", Model.eventViewModel.EventID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Comment" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<h4>Comments</h4>
+<div style="overflow:auto;height:100px">
+
+    <table>
+        @{
+            foreach (var comment in Model.commentsViewModels)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(model => comment.Comment)<hr /></td>
+                </tr>
+            }
+        }
+    </table>
+</div>

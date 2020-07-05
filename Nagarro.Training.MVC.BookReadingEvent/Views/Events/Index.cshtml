@@ -1,0 +1,37 @@
+﻿@model Nagarro.Training.MVC.BookReadingEvent.Models.SeprateEventsOnDate
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Past Events</h3>
+        <table>
+
+            @foreach (var item in Model.PastEvents)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.Title, "Details", new { id = item.EventID })
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>*@
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h3>Future Events</h3>
+        <table>
+            @foreach (var item in Model.FutureEvents)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.Title, "Details", new { id = item.EventID })
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>*@
+                </tr>
+            }
+        </table>
+    </div>
+</div>
